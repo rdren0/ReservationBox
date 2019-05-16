@@ -7,12 +7,12 @@ class Container extends Component {
   }
 
   render() {
-    let reservationcard = reservations.map(res => {
+    let reservationcards = this.props.reservations.map(res => {
       return <Card {...res} key={Date.now()} />
     })
     return (
-      <div>
-        
+      <div className="card-container">
+      { reservationcards }
       </div>
     );
   }
