@@ -1,7 +1,30 @@
 import React, { Component } from 'react';
+import Container from './Container'
+import {Form} from './Form'
 import './App.css';
 
 class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+      reservations: []
+    }
+  }
+
+  componentDidMount = () =>{
+    console.log("fetching")
+    this.fetchCall()
+  }
+
+  fetchCall = () => {
+    fetch("http://localhost:3001/api/v1/reservations")
+    .then(response => response.json())
+    .then(result => this.setState({
+      reservations: result
+    }))
+  }
+
+
   render() {
     return (
       <div className="App">
@@ -10,8 +33,10 @@ class App extends Component {
 
         </div>
         <div className='resy-container'>
+        <Container reservations={this.state.reservations}/>
           
         </div>
+        }
       </div>
     )
   }
