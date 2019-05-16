@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   createReservation = (reservation) => {
-    console.log(reservation)
+    this.postnewReservation(reservation)
   }
 
   fetchCall = () => {
@@ -28,6 +28,25 @@ class App extends Component {
     }))
   }
 
+  postnewReservation =(reservation) =>{
+    let option = {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: reservation.name, 
+        date: reservation.date, 
+        time: reservation.time, 
+        number: reservation.number 
+      })      
+    }
+    fetch("http://localhost:3001/api/v1/reservations", option)
+    .then(response =>  response.json())
+    .then(result => console.log(result))
+  }
+
 
   render() {
     return (
@@ -35,13 +54,11 @@ class App extends Component {
         <h1 className='app-title'>Turing Cafe Reservations</h1>
         <div className='resy-form'>
         <Form createReservation={this.createReservation} />
-
         </div>
         <div className='resy-container'>
         <Container reservations={this.state.reservations}/>
           
         </div>
-        }
       </div>
     )
   }
