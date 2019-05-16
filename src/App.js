@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Container from './Container'
-import {Form} from './Form'
+import Form from './Form'
 import './App.css';
 
 class App extends Component {
@@ -14,6 +14,10 @@ class App extends Component {
   componentDidMount = () =>{
     console.log("fetching")
     this.fetchCall()
+  }
+
+  createReservation = (reservation) => {
+    console.log(reservation)
   }
 
   fetchCall = () => {
@@ -30,6 +34,7 @@ class App extends Component {
       <div className="App">
         <h1 className='app-title'>Turing Cafe Reservations</h1>
         <div className='resy-form'>
+        <Form createReservation={this.createReservation} />
 
         </div>
         <div className='resy-container'>

@@ -20,10 +20,29 @@
 
 .card-container{
   display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+
 }
 
 .card{
-  width: 100px;
+  min-width: 250px;
+  margin: 5px;
+  padding: 5px;
   background-color: white;
-  border: 2px solid cyan;
+  border: 5px solid #008080;
+  border-radius: 10px;
+}
+
+button{
+  background-color: #008080;
+  width: 80%;
+  color: #FFF;
+}
+
+.make-button{
+  display: inline;
+}
+input{
+  display: inline;
 }
