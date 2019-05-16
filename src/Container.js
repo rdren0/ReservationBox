@@ -8,7 +8,7 @@ class Container extends Component {
 
   render() {
     let reservationcards = this.props.reservations.map(res => {
-      return <Card {...res} key={Date.now()} />
+      return <Card {...res} key={Date.now()} deleteReservation={this.props.deleteReservation} />
     })
     return (
       <div className="card-container">

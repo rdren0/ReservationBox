@@ -47,7 +47,19 @@ class App extends Component {
     .then(result => this.setState({
       newReservation: result
     }))
+    console.log([...this.state.reservations, this.state.newReservation])
     this.setState({reservations: [...this.state.reservations, this.state.newReservation]})
+  }
+
+  deleteReservation = (id) => {
+    fetch(`http://localhost:3001/api/v1/reservations/:${id.id}`, {
+      method: 'delete',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }})
+    .then(response =>  response.json())
+    .then(result => console.log(result))
   }
     
 
@@ -59,7 +71,7 @@ class App extends Component {
         <Form createReservation={this.createReservation} />
         </div>
         <div className='resy-container'>
-        <Container reservations={this.state.reservations}/>
+        <Container reservations={this.state.reservations} deleteReservation={this.deleteReservation}/>
         </div>
       </div>
     )
