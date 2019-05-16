@@ -12,7 +12,6 @@ class App extends Component {
   }
 
   componentDidMount = () =>{
-    console.log("fetching")
     this.fetchCall()
   }
 
@@ -29,6 +28,7 @@ class App extends Component {
   }
 
   postnewReservation =(reservation) =>{
+    let newReservation;
     let option = {
       method: 'post',
       headers: {
@@ -44,9 +44,12 @@ class App extends Component {
     }
     fetch("http://localhost:3001/api/v1/reservations", option)
     .then(response =>  response.json())
-    .then(result => console.log(result))
+    .then(result => this.setState({
+      newReservation: result
+    }))
+    this.setState({reservations: [...this.state.reservations, this.state.newReservation]})
   }
-
+    
 
   render() {
     return (
@@ -57,7 +60,6 @@ class App extends Component {
         </div>
         <div className='resy-container'>
         <Container reservations={this.state.reservations}/>
-          
         </div>
       </div>
     )
